@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EduPlan Schedule</title>
+    <link rel="icon" href="../images/iconlogo.png" type="image/png" />
+    <link rel="stylesheet" href="../styles/schedule.css" />
+    <script src="../scripts/scripts.js" defer></script>
+  </head>
+  <body>
+    <h1>Schedule</h1>
+
+    <form id="schedule-form">
+      <div class="block">
+        <label for="block1-class">Block 1 - Class:</label>
+        <select id="block1-class" name="block1-class">
+          <option value="apenglishlanguage">AP English Language</option>
+          <option value="apcalculus">AP Calculus</option>
+          <option value="apworldhistory">AP World History</option>
+          <option value="appsychology">AP Psychology</option>
+          <option value="ibmath">IB Math</option>
+        </select>
+
+        <label for="block1-grade">Estimate Grade:</label>
+        <input
+          type="number"
+          id="block1-grade"
+          name="block1-grade"
+          min="0"
+          max="100"
+          placeholder="Enter grade"
+          required
+        />
+      </div>
+
+      <div class="block">
+        <label for="block2-class">Block 2 - Class:</label>
+        <select id="block2-class" name="block2-class">
+          <option value="apenglishliterature">AP English Literature</option>
+          <option value="apbiology">AP Biology</option>
+          <option value="ibspanish">IB Spanish</option>
+          <option value="apfrench">AP French</option>
+          <option value="ibbusiness">IB Business</option>
+        </select>
+
+        <label for="block2-grade">Estimate Grade:</label>
+        <input
+          type="number"
+          id="block2-grade"
+          name="block2-grade"
+          min="0"
+          max="100"
+          placeholder="Enter grade"
+          required
+        />
+      </div>
+
+      <div class="block">
+        <label for="block3-class">Block 3 - Class:</label>
+        <select id="block3-class" name="block3-class">
+          <option value="apchemistry">AP Chemistry</option>
+          <option value="apgovernment">AP Government</option>
+          <option value="apcomputer">AP Computer Science</option>
+          <option value="ibmusic">IB Music</option>
+          <option value="ibvisualarts">IB Visual Arts</option>
+        </select>
+
+        <label for="block3-grade">Estimate Grade:</label>
+        <input
+          type="number"
+          id="block3-grade"
+          name="block3-grade"
+          min="0"
+          max="100"
+          placeholder="Enter grade"
+          required
+        />
+      </div>
+
+      <div class="block">
+        <label for="block4-class">Block 4 - Class:</label>
+        <select id="block4-class" name="block4-class">
+          <option value="aplatin">AP Latin</option>
+          <option value="ibenglishliterature">IB English Literature</option>
+          <option value="apstatistics">AP Statistics</option>
+          <option value="ibhistory">IB History</option>
+          <option value="apfrench">AP French</option>
+        </select>
+
+        <label for="block4-grade">Estimate Grade:</label>
+        <input
+          type="number"
+          id="block4-grade"
+          name="block4-grade"
+          min="0"
+          max="100"
+          placeholder="Enter grade"
+          required
+        />
+      </div>
+
+      <button type="button" id="calculate-gpa">Calculate GPA</button>
+
+      <h2>Estimated GPA: <span id="gpa-result">N/A</span></h2>
+    </form>
+  </body>
+</html>
