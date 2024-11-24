@@ -107,7 +107,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const submitBtn = document.getElementById("submit-btn");
   submitBtn.addEventListener("click", function (event) {
     event.preventDefault();
-    const devPassword = prompt("Enter developer password to override:");
+    const devPassword = prompt("Enter school code to continue:");
     if (devPassword === "408362") {
       window.location.href = "schedule.html";
     } else {
@@ -115,7 +115,7 @@ document.addEventListener("DOMContentLoaded", function () {
         form.submit();
       } else {
         alert(
-          "Please fill out all required fields or enter the correct developer password."
+          "Please fill out all required fields or enter the correct school code."
         );
       }
     }
