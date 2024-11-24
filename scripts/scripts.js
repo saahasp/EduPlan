@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", function () {
   submitBtn.addEventListener("click", function (event) {
     event.preventDefault();
     const devPassword = prompt("Enter school code to continue:");
-    if (devPassword === "408362") {
+    if (devPassword === "pahs") {
       window.location.href = "schedule.html";
     } else {
       if (form.checkValidity()) {
