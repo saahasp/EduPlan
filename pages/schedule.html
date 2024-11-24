@@ -9,7 +9,7 @@
     <script src="../scripts/scripts.js" defer></script>
   </head>
   <body>
-    <h1>Schedule</h1>
+    <h1>Possible Future Schedule</h1>
 
     <form id="schedule-form">
       <div class="block">
@@ -23,15 +23,16 @@
         </select>
 
         <label for="block1-grade">Estimate Grade:</label>
-        <input
-          type="number"
-          id="block1-grade"
-          name="block1-grade"
-          min="0"
-          max="100"
-          placeholder="Enter grade"
-          required
-        />
+        <select id="block1-grade" name="block1-grade" required>
+          <option value="A">A</option>
+          <option value="A-">A-</option>
+          <option value="B+">B+</option>
+          <option value="B">B</option>
+          <option value="B-">B-</option>
+          <option value="C+">C+</option>
+          <option value="C">C</option>
+          <option value="C-">C-</option>
+        </select>
       </div>
 
       <div class="block">
@@ -45,15 +46,16 @@
         </select>
 
         <label for="block2-grade">Estimate Grade:</label>
-        <input
-          type="number"
-          id="block2-grade"
-          name="block2-grade"
-          min="0"
-          max="100"
-          placeholder="Enter grade"
-          required
-        />
+        <select id="block2-grade" name="block2-grade" required>
+          <option value="A">A</option>
+          <option value="A-">A-</option>
+          <option value="B+">B+</option>
+          <option value="B">B</option>
+          <option value="B-">B-</option>
+          <option value="C+">C+</option>
+          <option value="C">C</option>
+          <option value="C-">C-</option>
+        </select>
       </div>
 
       <div class="block">
@@ -67,15 +69,16 @@
         </select>
 
         <label for="block3-grade">Estimate Grade:</label>
-        <input
-          type="number"
-          id="block3-grade"
-          name="block3-grade"
-          min="0"
-          max="100"
-          placeholder="Enter grade"
-          required
-        />
+        <select id="block3-grade" name="block3-grade" required>
+          <option value="A">A</option>
+          <option value="A-">A-</option>
+          <option value="B+">B+</option>
+          <option value="B">B</option>
+          <option value="B-">B-</option>
+          <option value="C+">C+</option>
+          <option value="C">C</option>
+          <option value="C-">C-</option>
+        </select>
       </div>
 
       <div class="block">
@@ -89,15 +92,16 @@
         </select>
 
         <label for="block4-grade">Estimate Grade:</label>
-        <input
-          type="number"
-          id="block4-grade"
-          name="block4-grade"
-          min="0"
-          max="100"
-          placeholder="Enter grade"
-          required
-        />
+        <select id="block4-grade" name="block4-grade" required>
+          <option value="A">A</option>
+          <option value="A-">A-</option>
+          <option value="B+">B+</option>
+          <option value="B">B</option>
+          <option value="B-">B-</option>
+          <option value="C+">C+</option>
+          <option value="C">C</option>
+          <option value="C-">C-</option>
+        </select>
       </div>
 
       <button type="button" id="calculate-gpa">Calculate GPA</button>

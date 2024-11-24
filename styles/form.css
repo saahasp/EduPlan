@@ -61,7 +61,8 @@ input[type="submit"]:hover {
   background-color: #555;
 }
 
-#classes-search {
+#classes-search,
+#careers-search {
   width: 100%;
   padding: 10px;
   font-size: 16px;
@@ -71,7 +72,8 @@ input[type="submit"]:hover {
   margin-bottom: 15px;
 }
 
-#classes-list {
+#classes-list,
+#careers-list {
   list-style: none;
   padding: 0;
   max-height: 150px;
@@ -80,23 +82,27 @@ input[type="submit"]:hover {
   border-radius: 5px;
 }
 
-#classes-list li {
+#classes-list li,
+#careers-list li {
   padding: 10px;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
-#classes-list li:hover {
+#classes-list li:hover,
+#careers-list li:hover {
   background-color: #eee;
 }
 
-#selected-classes {
+#selected-classes,
+#selected-careers {
   list-style: none;
   padding: 0;
   margin-top: 20px;
 }
 
-#selected-classes li {
+#selected-classes li,
+#selected-careers li {
   display: inline-block;
   background-color: #333;
   color: #f2f2f2;
@@ -108,6 +114,7 @@ input[type="submit"]:hover {
   transition: background-color 0.3s;
 }
 
-#selected-classes li:hover {
+#selected-classes li:hover,
+#selected-careers li:hover {
   background-color: #555;
 }

@@ -1,3 +1,4 @@
+//CLASSES TAKEN
 document.addEventListener("DOMContentLoaded", function () {
   var classes = [
     // Princess Anne High School AP Classes
@@ -102,6 +103,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+//SCHOOL CODE
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("eduplan-form");
   const submitBtn = document.getElementById("submit-btn");
@@ -120,4 +122,74 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
   });
+});
+
+//CAREER INTERSTS
+document.addEventListener("DOMContentLoaded", function () {
+  var careerInterests = [
+    "Architecture",
+    "Engineering",
+    "Art and Design",
+    "Business",
+    "Computer Science",
+    "Cybersecurity",
+    "Data Analysis",
+    "Digital Media",
+    "Education",
+    "Environmental Science",
+    "Film and Video Production",
+    "Healthcare",
+    "Hospitality",
+    "International Relations",
+    "Journalism",
+    "Law",
+    "Marketing",
+    "Mathematics",
+    "Music",
+    "Nursing",
+    "Philosophy",
+    "Physics",
+    "Politics",
+    "Psychology",
+    "Sociology",
+    "Theatre",
+    "Video Game Design",
+    "Writing",
+  ];
+
+  var list = document.getElementById("careers-list");
+  var selectedCareersList = document.getElementById("selected-careers");
+  careerInterests.forEach(function (careerInterest) {
+    var option = document.createElement("li");
+    option.textContent = careerInterest;
+    option.onclick = function () {
+      addCareerToSelected(careerInterest);
+    };
+    list.appendChild(option);
+  });
+  function addCareerToSelected(careerInterest) {
+    if (
+      [...selectedCareersList.children].some(
+        (item) => item.textContent === careerInterest
+      )
+    ) {
+      return;
+    }
+    var selectedItem = document.createElement("li");
+    selectedItem.textContent = careerInterest;
+    selectedItem.onclick = function () {
+      selectedCareersList.removeChild(selectedItem);
+    };
+    selectedCareersList.appendChild(selectedItem);
+  }
+  function searchCareers() {
+    var filter = document.getElementById("careers-search").value.toUpperCase();
+    var options = list.getElementsByTagName("li");
+    for (var i = 0; i < options.length; i++) {
+      var txtValue = options[i].textContent || options[i].innerText;
+      options[i].style.display = txtValue.toUpperCase().includes(filter)
+        ? ""
+        : "none";
+    }
+  }
 });

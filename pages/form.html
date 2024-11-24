@@ -14,6 +14,15 @@
       <label for="name">Name:</label>
       <input type="text" id="name" name="name" required />
       <br />
+      <label for="student-id">Student ID:</label>
+      <input
+        type="text"
+        id="student-id"
+        name="student_id"
+        required
+        pattern="[0-9]{7}"
+      />
+      <br />
       <label for="email">Email:</label>
       <input type="email" id="email" name="email" required />
       <br />
@@ -56,6 +65,18 @@
         <option value="senior">Senior</option>
       </select>
       <br />
+      <label for="careers">Career Interests (click to add):</label>
+      <input
+        type="text"
+        id="careers-search"
+        onkeyup="searchCareers()"
+        placeholder="Search for careers..."
+      />
+      <ul id="careers-list"></ul>
+
+      <h3>Selected Classes (click to remove):</h3>
+      <ul id="selected-careers" name="careers[]"></ul>
+      <br />
       <label for="classes">Classes Already Taken (click to add):</label>
       <input
         type="text"
@@ -67,7 +88,6 @@
 
       <h3>Selected Classes (click to remove):</h3>
       <ul id="selected-classes" name="classes[]"></ul>
-
       <br />
       <input type="submit" value="Submit" id="submit-btn" />
     </form>
