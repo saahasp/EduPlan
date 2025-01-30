@@ -1,75 +1,167 @@
-body {
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande";
-  background-color: #f2f2f2;
-  color: #333;
+:root {
+  --primary-color: #007AFF;
+  --secondary-color: #5856D6;
+  --success-color: #34C759;
+  --background-color: #F2F2F7;
+  --surface-color: #FFFFFF;
+  --text-primary: #000000;
+  --text-secondary: #6C6C70;
+  --border-color: #C6C6C8;
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --border-radius: 10px;
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+* {
   margin: 0;
-  padding: 20px;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: var(--spacing-md);
+}
+
+.top-nav {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
+  padding: var(--spacing-md) 0;
+  margin-bottom: var(--spacing-lg);
+}
+
+.back-button {
+  display: flex;
+  align-items: center;
+  color: var(--primary-color);
+  text-decoration: none;
+  margin-right: var(--spacing-md);
+}
+
+.back-button svg {
+  fill: currentColor;
 }
 
 h1 {
-  font-size: 60px;
-  color: #333;
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-  margin-bottom: 20px;
+  font-size: 28px;
+  font-weight: 700;
 }
 
-form {
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-  padding: 40px;
-  max-width: 500px;
-  width: 100%;
-  text-align: left;
+h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: var(--spacing-md);
+}
+
+.form-grid {
+  display: grid;
+  gap: var(--spacing-xl);
+}
+
+.form-section {
+  background-color: var(--surface-color);
+  padding: var(--spacing-lg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+}
+
+.input-group {
+  margin-bottom: var(--spacing-lg);
+}
+
+.input-group:last-child {
+  margin-bottom: 0;
 }
 
 label {
-  font-size: 18px;
   display: block;
-  margin-top: 20px;
+  font-weight: 500;
+  margin-bottom: var(--spacing-xs);
+  color: var(--text-secondary);
 }
 
-input[type="text"],
-input[type="email"],
-input[type="number"],
-select {
+input, select {
   width: 100%;
-  padding: 10px;
-  margin-top: 5px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
   font-size: 16px;
-  box-sizing: border-box;
+  transition: border-color 0.2s ease;
 }
 
-input[type="submit"] {
-  font-size: 20px;
-  padding: 12px 24px;
-  background-color: #333;
-  color: #f2f2f2;
-  border: none;
-  border-radius: 5px;
-  margin-top: 20px;
+input:focus, select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.tag-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+}
+
+.tag {
+  background-color: var(--background-color);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: 14px;
   cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-input[type="submit"]:hover {
-  background-color: #555;
+.tag.active {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+.form-actions {
+  display: flex;
+  justify-content: center;
+  padding: var(--spacing-lg) 0;
+}
+
+.primary-button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  padding: var(--spacing-md) var(--spacing-xl);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.primary-button:hover {
+  background-color: #0066CC;
 }
 
 #classes-search,
 #careers-search {
   width: 100%;
-  padding: 10px;
+  padding: var(--spacing-sm) var(--spacing-md);
   font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  margin-top: 5px;
-  margin-bottom: 15px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  margin-top: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
 }
 
 #classes-list,
@@ -78,13 +170,13 @@ input[type="submit"]:hover {
   padding: 0;
   max-height: 150px;
   overflow-y: auto;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
 }
 
 #classes-list li,
 #careers-list li {
-  padding: 10px;
+  padding: var(--spacing-sm) var(--spacing-md);
   cursor: pointer;
   transition: background-color 0.3s;
 }
@@ -98,17 +190,17 @@ input[type="submit"]:hover {
 #selected-careers {
   list-style: none;
   padding: 0;
-  margin-top: 20px;
+  margin-top: var(--spacing-md);
 }
 
 #selected-classes li,
 #selected-careers li {
   display: inline-block;
-  background-color: #333;
-  color: #f2f2f2;
-  padding: 8px 12px;
-  border-radius: 5px;
-  margin: 5px;
+  background-color: var(--primary-color);
+  color: white;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius);
+  margin: var(--spacing-sm);
   cursor: pointer;
   font-size: 16px;
   transition: background-color 0.3s;
@@ -116,5 +208,15 @@ input[type="submit"]:hover {
 
 #selected-classes li:hover,
 #selected-careers li:hover {
-  background-color: #555;
+  background-color: #0066CC;
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: var(--spacing-sm);
+  }
+  
+  .form-section {
+    padding: var(--spacing-md);
+  }
 }

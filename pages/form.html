@@ -5,91 +5,98 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EduPlan Form</title>
     <link rel="icon" href="../images/iconlogo.png" type="image/png" />
-    <script src="../scripts/scripts.js"></script>
+    <script src="../scripts/form.js" defer></script>
     <link rel="stylesheet" href="../styles/form.css" />
   </head>
   <body>
-    <h1>EduPlan Form</h1>
-    <form action="process_form.php" method="post">
-      <label for="name">Name:</label>
-      <input type="text" id="name" name="name" required />
-      <br />
-      <label for="student-id">Student ID:</label>
-      <input
-        type="text"
-        id="student-id"
-        name="student_id"
-        required
-        pattern="[0-9]{7}"
-      />
-      <br />
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required />
-      <br />
-      <label for="school">School Name:</label>
-      <select id="school" name="school" required>
-        <option value="school1">Princess Anne High School</option>
-      </select>
-      <br />
-      <label for="graduation-year">Graduation Year:</label>
-      <select id="graduation-year" name="graduation_year" required>
-        <option value="2025">2025</option>
-        <option value="2026">2026</option>
-        <option value="2027">2027</option>
-        <option value="2028">2028</option>
-        <option value="2029">2029</option>
-        <option value="2030">2030</option>
-      </select>
-      <br />
-      <label for="counselor">Counselor Name:</label>
-      <select id="counselor" name="counselor" required>
-        <option value="counselor1">Catherine Delaney</option>
-        <option value="counselor2">Sharon Hill</option>
-        <option value="counselor3">Zachary Hlasnicek</option>
-        <option value="counselor4">Sheila Gorham</option>
-        <option value="counselor5">Heather Steinman</option>
-        <option value="counselor6">Kim Love</option>
-      </select>
-      <br />
-      <label for="gpa">Current GPA:</label>
-      <input type="number" id="gpa" name="gpa" step="0.10" required />
-      <br />
-      <label for="gpa">Goal GPA:</label>
-      <input type="number" id="gpa" name="gpa" step="0.10" required />
-      <br />
-      <label for="year">Year to reach goal GPA:</label>
-      <select id="year" name="year" required>
-        <option value="freshman">Freshman</option>
-        <option value="sophomore">Sophomore</option>
-        <option value="junior">Junior</option>
-        <option value="senior">Senior</option>
-      </select>
-      <br />
-      <label for="careers">Career Interests (click to add):</label>
-      <input
-        type="text"
-        id="careers-search"
-        onkeyup="searchCareers()"
-        placeholder="Search for careers..."
-      />
-      <ul id="careers-list"></ul>
+    <div class="container">
+      <nav class="top-nav">
+        <a href="../index.html" class="back-button">
+          <svg width="24" height="24" viewBox="0 0 24 24">
+            <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+          </svg>
+        </a>
+        <h1>Student Profile</h1>
+      </nav>
 
-      <h3>Selected Classes (click to remove):</h3>
-      <ul id="selected-careers" name="careers[]"></ul>
-      <br />
-      <label for="classes">Classes Already Taken (click to add):</label>
-      <input
-        type="text"
-        id="classes-search"
-        onkeyup="searchClasses()"
-        placeholder="Search for classes..."
-      />
-      <ul id="classes-list"></ul>
+      <form id="student-form" class="form-grid">
+        <div class="form-section">
+          <h2>Personal Information</h2>
+          <div class="input-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" required placeholder="Enter your full name" />
+          </div>
 
-      <h3>Selected Classes (click to remove):</h3>
-      <ul id="selected-classes" name="classes[]"></ul>
-      <br />
-      <input type="submit" value="Submit" id="submit-btn" />
-    </form>
+          <div class="input-group">
+            <label for="student-id">Student ID</label>
+            <input type="text" id="student-id" name="student_id" required pattern="[0-9]{6}" placeholder="6-digit ID number" />
+          </div>
+
+          <div class="input-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required placeholder="student@email.com" />
+          </div>
+        </div>
+
+        <div class="form-section">
+          <h2>Academic Information</h2>
+          <div class="input-group">
+            <label for="school">School</label>
+            <select id="school" name="school" required>
+              <option value="school1">Princess Anne High School</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <label for="graduation-year">Graduation Year</label>
+            <select id="graduation-year" name="graduation_year" required>
+              <option value="2025">2025</option>
+              <option value="2026">2026</option>
+              <option value="2027">2027</option>
+              <option value="2028">2028</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <label for="counselor">Counselor</label>
+            <select id="counselor" name="counselor" required>
+              <option value="counselor1">Catherine Delaney</option>
+              <option value="counselor2">Sharon Hill</option>
+              <option value="counselor3">Zachary Hlasnicek</option>
+              <option value="counselor4">Sheila Gorham</option>
+              <option value="counselor5">Heather Steinman</option>
+              <option value="counselor6">Kim Love</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <h2>Academic Goals</h2>
+          <div class="input-group">
+            <label for="target-gpa">Target GPA</label>
+            <input type="number" id="target-gpa" name="target_gpa" step="0.01" min="0" max="5" required placeholder="e.g. 3.50" />
+          </div>
+
+          <div class="input-group">
+            <label for="current-gpa">Current GPA (if applicable)</label>
+            <input type="number" id="current-gpa" name="current_gpa" step="0.01" min="0" max="5" placeholder="e.g. 3.20" />
+          </div>
+
+          <div class="input-group">
+            <label>Academic Interests</label>
+            <div class="tag-container" id="interests-container">
+              <button type="button" class="tag" data-interest="stem">STEM</button>
+              <button type="button" class="tag" data-interest="humanities">Humanities</button>
+              <button type="button" class="tag" data-interest="arts">Arts</button>
+              <button type="button" class="tag" data-interest="languages">Languages</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="primary-button">Get Class Suggestions</button>
+        </div>
+      </form>
+    </div>
   </body>
 </html>

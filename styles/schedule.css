@@ -1,69 +1,265 @@
-body {
-  font-family: "Arial", sans-serif;
-  background-color: #f7f7f7;
-  color: #333;
+:root {
+  --primary-color: #007AFF;
+  --secondary-color: #5856D6;
+  --success-color: #34C759;
+  --warning-color: #FF9500;
+  --danger-color: #FF3B30;
+  --background-color: #F2F2F7;
+  --surface-color: #FFFFFF;
+  --text-primary: #000000;
+  --text-secondary: #6C6C70;
+  --border-color: #C6C6C8;
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --border-radius: 10px;
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-primary);
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--spacing-md);
+  padding-bottom: var(--spacing-xl);
+}
+
+.top-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--background-color);
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: 100vh;
+  padding: var(--spacing-md) 0;
+  margin-bottom: var(--spacing-lg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.back-button {
+  display: flex;
+  align-items: center;
+  color: var(--primary-color);
+  text-decoration: none;
+  margin-right: var(--spacing-md);
+}
+
+.back-button svg {
+  fill: currentColor;
 }
 
 h1 {
-  font-size: 2.5em;
-  margin-bottom: 20px;
-}
-
-form {
-  background-color: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 500px;
-}
-
-.block {
-  margin-bottom: 20px;
-}
-
-label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-
-select,
-input[type="number"] {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
-
-button {
-  padding: 10px 20px;
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1em;
-}
-
-button:hover {
-  background-color: #45a049;
+  font-size: 24px;
+  font-weight: 600;
 }
 
 h2 {
-  margin-top: 20px;
-  font-size: 1.5em;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: var(--spacing-md);
 }
 
-span {
-  font-weight: bold;
-  color: #4caf50;
+h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: var(--spacing-sm);
+  color: var(--text-secondary);
+}
+
+.schedule-container {
+  display: grid;
+  gap: var(--spacing-xl);
+}
+
+.schedule-section, .gpa-section {
+  background-color: var(--surface-color);
+  padding: var(--spacing-lg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+}
+
+.info-text {
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-lg);
+  font-size: 14px;
+}
+
+.blocks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+.block {
+  background-color: var(--background-color);
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius);
+  transition: transform 0.2s ease;
+}
+
+.block:hover {
+  transform: translateY(-2px);
+}
+
+.course-controls {
+  display: grid;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
+}
+
+.course-select, .grade-select {
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  font-size: 14px;
+  background-color: var(--surface-color);
+}
+
+.course-info {
+  display: grid;
+  gap: var(--spacing-xs);
+  font-size: 12px;
+  color: var(--text-secondary);
+  background-color: var(--surface-color);
+  padding: var(--spacing-sm);
+  border-radius: var(--border-radius);
+}
+
+.gpa-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: var(--spacing-lg);
+}
+
+.gpa-info, .target-info {
+  display: grid;
+  gap: var(--spacing-md);
+}
+
+.gpa-item {
+  display: grid;
+  gap: var(--spacing-xs);
+}
+
+.gpa-item label {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.gpa-item span {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.gpa-item.total {
+  padding-top: var(--spacing-md);
+  border-top: 1px solid var(--border-color);
+}
+
+.gpa-item.total span {
+  color: var(--primary-color);
+}
+
+.gpa-status {
+  padding: var(--spacing-sm) var(--spacing-md);
+  background-color: var(--success-color);
+  color: white;
+  border-radius: var(--border-radius);
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.gpa-status.warning {
+  background-color: var(--warning-color);
+}
+
+.actions-section {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: center;
+  margin-top: var(--spacing-lg);
+}
+
+.primary-button, .secondary-button, .email-button {
+  padding: var(--spacing-md) var(--spacing-xl);
+  border-radius: var(--border-radius);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.primary-button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+}
+
+.primary-button:hover {
+  background-color: #0066CC;
+}
+
+.secondary-button {
+  background-color: var(--background-color);
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+}
+
+.secondary-button:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.email-button {
+  background-color: var(--success-color);
+  color: white;
+  border: none;
+}
+
+.email-button:hover {
+  background-color: #2CAD4E;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: var(--spacing-sm);
+  }
+
+  .gpa-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .blocks-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .actions-section {
+    flex-direction: column;
+  }
+
+  .schedule-section, .gpa-section {
+    padding: var(--spacing-md);
+  }
 }

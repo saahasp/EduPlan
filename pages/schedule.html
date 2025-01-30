@@ -6,107 +6,166 @@
     <title>EduPlan Schedule</title>
     <link rel="icon" href="../images/iconlogo.png" type="image/png" />
     <link rel="stylesheet" href="../styles/schedule.css" />
-    <script src="../scripts/scripts.js" defer></script>
+    <script src="../scripts/schedule.js" defer></script>
   </head>
   <body>
-    <h1>Possible Future Schedule</h1>
+    <div class="container">
+      <nav class="top-nav">
+        <a href="form.html" class="back-button">
+          <svg width="24" height="24" viewBox="0 0 24 24">
+            <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+          </svg>
+        </a>
+        <h1>Your Schedule</h1>
+      </nav>
 
-    <form id="schedule-form">
-      <div class="block">
-        <label for="block1-class">Block 1 - Class:</label>
-        <select id="block1-class" name="block1-class">
-          <option value="apenglishlanguage">AP English Language</option>
-          <option value="apcalculus">AP Calculus</option>
-          <option value="apworldhistory">AP World History</option>
-          <option value="appsychology">AP Psychology</option>
-          <option value="ibmath">IB Math</option>
-        </select>
+      <div class="schedule-container">
+        <div class="schedule-section">
+          <h2>Class Schedule</h2>
+          <p class="info-text">Select your classes and expected grades:</p>
+          
+          <div class="blocks-grid">
+            <div class="block" id="block1">
+              <h3>Block 1</h3>
+              <div class="course-controls">
+                <select class="course-select" id="block1-class" name="block1-class">
+                  <option value="">Loading courses...</option>
+                </select>
+                <select class="grade-select" id="block1-grade">
+                  <option value="A">A (93-100)</option>
+                  <option value="A-">A- (90-92)</option>
+                  <option value="B+">B+ (87-89)</option>
+                  <option value="B">B (83-86)</option>
+                  <option value="B-">B- (80-82)</option>
+                  <option value="C+">C+ (77-79)</option>
+                  <option value="C">C (73-76)</option>
+                  <option value="C-">C- (70-72)</option>
+                  <option value="D+">D+ (67-69)</option>
+                  <option value="D">D (64-66)</option>
+                  <option value="E">E (Below 64)</option>
+                </select>
+              </div>
+              <div class="course-info">
+                <span class="gpa-impact">GPA Impact: +0.0000</span>
+                <span class="course-type">Course Type: AP</span>
+              </div>
+            </div>
 
-        <label for="block1-grade">Estimate Grade:</label>
-        <select id="block1-grade" name="block1-grade" required>
-          <option value="A">A</option>
-          <option value="A-">A-</option>
-          <option value="B+">B+</option>
-          <option value="B">B</option>
-          <option value="B-">B-</option>
-          <option value="C+">C+</option>
-          <option value="C">C</option>
-          <option value="C-">C-</option>
-        </select>
+            <div class="block" id="block2">
+              <h3>Block 2</h3>
+              <div class="course-controls">
+                <select class="course-select" id="block2-class" name="block2-class">
+                  <option value="">Loading courses...</option>
+                </select>
+                <select class="grade-select" id="block2-grade">
+                  <option value="A">A (93-100)</option>
+                  <option value="A-">A- (90-92)</option>
+                  <option value="B+">B+ (87-89)</option>
+                  <option value="B">B (83-86)</option>
+                  <option value="B-">B- (80-82)</option>
+                  <option value="C+">C+ (77-79)</option>
+                  <option value="C">C (73-76)</option>
+                  <option value="C-">C- (70-72)</option>
+                  <option value="D+">D+ (67-69)</option>
+                  <option value="D">D (64-66)</option>
+                  <option value="E">E (Below 64)</option>
+                </select>
+              </div>
+              <div class="course-info">
+                <span class="gpa-impact">GPA Impact: +0.0000</span>
+                <span class="course-type">Course Type: AP</span>
+              </div>
+            </div>
+
+            <div class="block" id="block3">
+              <h3>Block 3</h3>
+              <div class="course-controls">
+                <select class="course-select" id="block3-class" name="block3-class">
+                  <option value="">Loading courses...</option>
+                </select>
+                <select class="grade-select" id="block3-grade">
+                  <option value="A">A (93-100)</option>
+                  <option value="A-">A- (90-92)</option>
+                  <option value="B+">B+ (87-89)</option>
+                  <option value="B">B (83-86)</option>
+                  <option value="B-">B- (80-82)</option>
+                  <option value="C+">C+ (77-79)</option>
+                  <option value="C">C (73-76)</option>
+                  <option value="C-">C- (70-72)</option>
+                  <option value="D+">D+ (67-69)</option>
+                  <option value="D">D (64-66)</option>
+                  <option value="E">E (Below 64)</option>
+                </select>
+              </div>
+              <div class="course-info">
+                <span class="gpa-impact">GPA Impact: +0.0000</span>
+                <span class="course-type">Course Type: AP</span>
+              </div>
+            </div>
+
+            <div class="block" id="block4">
+              <h3>Block 4</h3>
+              <div class="course-controls">
+                <select class="course-select" id="block4-class" name="block4-class">
+                  <option value="">Loading courses...</option>
+                </select>
+                <select class="grade-select" id="block4-grade">
+                  <option value="A">A (93-100)</option>
+                  <option value="A-">A- (90-92)</option>
+                  <option value="B+">B+ (87-89)</option>
+                  <option value="B">B (83-86)</option>
+                  <option value="B-">B- (80-82)</option>
+                  <option value="C+">C+ (77-79)</option>
+                  <option value="C">C (73-76)</option>
+                  <option value="C-">C- (70-72)</option>
+                  <option value="D+">D+ (67-69)</option>
+                  <option value="D">D (64-66)</option>
+                  <option value="E">E (Below 64)</option>
+                </select>
+              </div>
+              <div class="course-info">
+                <span class="gpa-impact">GPA Impact: +0.0000</span>
+                <span class="course-type">Course Type: AP</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="gpa-section">
+          <h2>GPA Calculator</h2>
+          <div class="gpa-grid">
+            <div class="gpa-info">
+              <div class="gpa-item">
+                <label>Base GPA</label>
+                <span id="base-gpa">0.0000</span>
+              </div>
+              <div class="gpa-item">
+                <label>Weighted Bonus</label>
+                <span id="weighted-bonus">0.0000</span>
+              </div>
+              <div class="gpa-item total">
+                <label>Projected Final GPA</label>
+                <span id="final-gpa">0.0000</span>
+              </div>
+            </div>
+            <div class="target-info">
+              <div class="gpa-item">
+                <label>Target GPA</label>
+                <span id="target-gpa">0.0000</span>
+              </div>
+              <div class="gpa-status" id="gpa-status">
+                Calculating GPA...
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="actions-section">
+          <button class="primary-button" onclick="saveSchedule()">Save Schedule</button>
+          <button class="secondary-button" onclick="regenerateSchedule()">Regenerate Suggestions</button>
+          <button class="email-button" onclick="emailSchedule()">Email Schedule</button>
+        </div>
       </div>
-
-      <div class="block">
-        <label for="block2-class">Block 2 - Class:</label>
-        <select id="block2-class" name="block2-class">
-          <option value="apenglishliterature">AP English Literature</option>
-          <option value="apbiology">AP Biology</option>
-          <option value="ibspanish">IB Spanish</option>
-          <option value="apfrench">AP French</option>
-          <option value="ibbusiness">IB Business</option>
-        </select>
-
-        <label for="block2-grade">Estimate Grade:</label>
-        <select id="block2-grade" name="block2-grade" required>
-          <option value="A">A</option>
-          <option value="A-">A-</option>
-          <option value="B+">B+</option>
-          <option value="B">B</option>
-          <option value="B-">B-</option>
-          <option value="C+">C+</option>
-          <option value="C">C</option>
-          <option value="C-">C-</option>
-        </select>
-      </div>
-
-      <div class="block">
-        <label for="block3-class">Block 3 - Class:</label>
-        <select id="block3-class" name="block3-class">
-          <option value="apchemistry">AP Chemistry</option>
-          <option value="apgovernment">AP Government</option>
-          <option value="apcomputer">AP Computer Science</option>
-          <option value="ibmusic">IB Music</option>
-          <option value="ibvisualarts">IB Visual Arts</option>
-        </select>
-
-        <label for="block3-grade">Estimate Grade:</label>
-        <select id="block3-grade" name="block3-grade" required>
-          <option value="A">A</option>
-          <option value="A-">A-</option>
-          <option value="B+">B+</option>
-          <option value="B">B</option>
-          <option value="B-">B-</option>
-          <option value="C+">C+</option>
-          <option value="C">C</option>
-          <option value="C-">C-</option>
-        </select>
-      </div>
-
-      <div class="block">
-        <label for="block4-class">Block 4 - Class:</label>
-        <select id="block4-class" name="block4-class">
-          <option value="aplatin">AP Latin</option>
-          <option value="ibenglishliterature">IB English Literature</option>
-          <option value="apstatistics">AP Statistics</option>
-          <option value="ibhistory">IB History</option>
-          <option value="apfrench">AP French</option>
-        </select>
-
-        <label for="block4-grade">Estimate Grade:</label>
-        <select id="block4-grade" name="block4-grade" required>
-          <option value="A">A</option>
-          <option value="A-">A-</option>
-          <option value="B+">B+</option>
-          <option value="B">B</option>
-          <option value="B-">B-</option>
-          <option value="C+">C+</option>
-          <option value="C">C</option>
-          <option value="C-">C-</option>
-        </select>
-      </div>
-
-      <button type="button" id="calculate-gpa">Calculate GPA</button>
-
-      <h2>Estimated GPA: <span id="gpa-result">N/A</span></h2>
-    </form>
+    </div>
   </body>
 </html>

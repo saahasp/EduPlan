@@ -1,0 +1,63 @@
+.calculator-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.course-entry {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    align-items: center;
+}
+
+select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+button {
+    padding: 8px 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.results {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+.results h2 {
+    margin-top: 0;
+    color: #333;
+}
+
+.results p {
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+.results span {
+    font-weight: bold;
+    color: #4CAF50;
+}
+
+button[onclick*="removeCourse"] {
+    background-color: #f44336;
+}
+
+button[onclick*="removeCourse"]:hover {
+    background-color: #da190b;
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduPlan GPA Calculator</title>
+    <link rel="icon" href="../images/iconlogo.png" type="image/png">
+    <link rel="stylesheet" href="../styles/form.css">
+    <script src="../scripts/gpa-calculator.js" defer></script>
+</head>
+<body>
+    <h1>GPA Calculator</h1>
+    <div class="calculator-container">
+        <div id="course-list">
+            <button onclick="addCourse()">Add Course</button>
+            <div id="courses"></div>
+        </div>
+        
+        <div class="results">
+            <h2>Results</h2>
+            <p>Base GPA: <span id="base-gpa">0.0000</span></p>
+            <p>Weighted Bonus: <span id="weighted-bonus">0.0000</span></p>
+            <p>Final GPA: <span id="final-gpa">0.0000</span></p>
+        </div>
+    </div>
+
+    <template id="course-template">
+        <div class="course-entry">
+            <select class="course-type">
+                <option value="regular">Regular Course</option>
+                <option value="ap">Advanced Placement</option>
+                <option value="magnet">Magnet/IB Course</option>
+            </select>
+            <select class="course-duration">
+                <option value="year">Year Long</option>
+                <option value="semester">Semester</option>
+            </select>
+            <select class="grade">
+                <option value="A">A (93-100)</option>
+                <option value="A-">A- (90-92)</option>
+                <option value="B+">B+ (87-89)</option>
+                <option value="B">B (83-86)</option>
+                <option value="B-">B- (80-82)</option>
+                <option value="C+">C+ (77-79)</option>
+                <option value="C">C (73-76)</option>
+                <option value="C-">C- (70-72)</option>
+                <option value="D+">D+ (67-69)</option>
+                <option value="D">D (64-66)</option>
+                <option value="E">E (Below 64)</option>
+            </select>
+            <button onclick="removeCourse(this)">Remove</button>
+        </div>
+    </template>
+</body>
+</html>
