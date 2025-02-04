@@ -73,41 +73,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Handle form submission
-    form.addEventListener('submit', (e) => {
+    document.getElementById('student-form').addEventListener('submit', function(e) {
         e.preventDefault();
-        
-        // Collect form data
-        const formData = {
-            name: document.getElementById('name').value,
-            studentId: document.getElementById('student-id').value,
-            email: document.getElementById('email').value,
-            school: document.getElementById('school').value,
-            graduationYear: document.getElementById('graduation-year').value,
-            counselor: document.getElementById('counselor').value,
-            targetGPA: parseFloat(document.getElementById('target-gpa').value),
-            currentGPA: parseFloat(document.getElementById('current-gpa').value) || 0,
-            interests: Array.from(document.querySelectorAll('.tag.active'))
-                .map(tag => tag.dataset.interest)
-        };
-
-        // Validate student ID
-        if (!/^\d{6}$/.test(formData.studentId)) {
-            alert('Please enter a valid 6-digit student ID');
-            return;
-        }
-
-        // Validate GPA
-        if (formData.targetGPA < 0 || formData.targetGPA > 5) {
-            alert('Please enter a valid target GPA between 0 and 5');
-            return;
-        }
-
-        // Save to localStorage
-        localStorage.setItem('studentData', JSON.stringify(formData));
-
-        // Navigate to schedule page
-        window.location.href = 'schedule.html';
+        window.location.href = '../pages/schedule.html';
     });
 });
 
