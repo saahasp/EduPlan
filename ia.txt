@@ -1,0 +1,167 @@
+Complex Code Documentation for IB Computer Science HL IA - Part C
+
+1. GPA Calculation System
+```javascript
+function calculateGPA() {
+    const currentGPA = parseFloat(document.getElementById('current-gpa').value) || 0;
+    const targetGPA = parseFloat(document.getElementById('target-gpa').value) || 0;
+    
+    let totalPoints = 0;
+    let totalCourses = 0;
+    let totalBonus = 0;
+
+    // Process regular blocks
+    for (let i = 1; i <= 8; i++) {
+        const courseSelect = document.getElementById(`block${i}-class`);
+        const gradeSelect = document.getElementById(`block${i}-grade`);
+        
+        if (courseSelect.value && gradeSelect.value) {
+            const [courseType, courseName] = courseSelect.value.split(':');
+            const grade = gradeSelect.value;
+            
+            // Calculate base points
+            const basePoints = gradePoints[grade];
+            totalPoints += basePoints;
+            totalCourses += 1;
+            
+            // Calculate weighted bonus for AP/IB courses
+            if (courseType === 'ap' || courseType === 'ib') {
+                const bonus = weightedBonus[grade];
+                totalBonus += bonus;
+            }
+        }
+    }
+
+    // Process Virtual Virginia classes
+    const virtualClasses = document.getElementById('virtual-classes');
+    for (let i = 0; i < virtualClasses.children.length; i++) {
+        const courseSelect = virtualClasses.children[i].querySelector('.course-select');
+        const gradeSelect = virtualClasses.children[i].querySelector('.grade-select');
+        
+        if (courseSelect.value && gradeSelect.value) {
+            const [courseType, courseName] = courseSelect.value.split(':');
+            const grade = gradeSelect.value;
+            
+            const basePoints = gradePoints[grade];
+            totalPoints += basePoints;
+            totalCourses += 1;
+            
+            // All Virtual Virginia classes are AP, so always add bonus
+            const bonus = weightedBonus[grade];
+            totalBonus += bonus;
+        }
+    }
+
+    const baseGPA = totalCourses > 0 ? (totalPoints / totalCourses) : 0;
+    const averageBaseGPA = (baseGPA + currentGPA) / 2;
+    const totalGPA = averageBaseGPA + totalBonus;
+}
+```
+Explanation: This code implements a sophisticated GPA calculation system that:
+- Processes both regular schedule and Virtual Virginia AP classes
+- Calculates base GPA by averaging all course grades
+- Averages the base GPA with the student's current GPA
+- Adds weighted bonuses for AP/IB courses (0.0488 for A's, scaled down for lower grades)
+- Handles dynamic addition/removal of Virtual Virginia classes
+The code is suitable because it accurately implements the school's specific GPA calculation rules while being flexible enough to handle varying numbers of classes.
+
+2. Smart Schedule Generation
+```javascript
+function generateSchedule() {
+    const currentGPA = parseFloat(document.getElementById('current-gpa').value) || 0;
+    const targetGPA = parseFloat(document.getElementById('target-gpa').value) || 0;
+    const selectedInterests = Array.from(document.querySelectorAll('.interest-tag.active'))
+        .map(tag => tag.dataset.interest);
+
+    const gpaGap = targetGPA - currentGPA;
+    const numAdvancedCourses = Math.ceil(Math.abs(gpaGap) / 0.0488) * (gpaGap > 0 ? 1 : -1);
+    
+    const availableCourses = {
+        advanced: [],
+        regular: []
+    };
+
+    // Collect AP/IB courses matching interests
+    ['ap', 'ib'].forEach(type => {
+        Object.entries(courses[type]).forEach(([name, data]) => {
+            if (selectedInterests.includes(data.category)) {
+                availableCourses.advanced.push({ name, type, ...data });
+            }
+        });
+    });
+
+    // Collect regular courses matching interests
+    Object.entries(courses.regular).forEach(([name, data]) => {
+        if (selectedInterests.includes(data.category)) {
+            availableCourses.regular.push({ name, type: 'regular', ...data });
+        }
+    });
+
+    // Shuffle arrays to randomize selection
+    availableCourses.advanced.sort(() => Math.random() - 0.5);
+    availableCourses.regular.sort(() => Math.random() - 0.5);
+
+    // Select courses based on needed AP/IB ratio
+    const recommendedCourses = [];
+    for (let i = 0; i < 8; i++) {
+        if (i < Math.abs(numAdvancedCourses)) {
+            const course = availableCourses.advanced[i % availableCourses.advanced.length];
+            recommendedCourses.push(course);
+        } else {
+            const course = availableCourses.regular[i % availableCourses.regular.length];
+            recommendedCourses.push(course);
+        }
+    }
+}
+```
+Explanation: This code implements an intelligent schedule generation algorithm that:
+- Calculates how many AP/IB courses are needed to reach the target GPA
+- Filters courses based on student's academic interests
+- Ensures a balanced schedule by mixing regular and advanced courses
+- Randomizes course selection within each category to provide variety
+- Handles edge cases like insufficient courses in a category using modulo operator
+The code is suitable because it creates personalized schedules that align with both academic goals and interests while maintaining schedule balance.
+
+3. Dynamic Virtual Virginia Integration
+```javascript
+function addVirtualClass() {
+    const virtualClasses = document.getElementById('virtual-classes');
+    const classCount = virtualClasses.children.length;
+    
+    const virtualClass = document.createElement('div');
+    virtualClass.className = 'virtual-class';
+    virtualClass.innerHTML = `
+        <select class="course-select" id="virtual-class-${classCount + 1}">
+            <option value="">Select an AP Course</option>
+            ${Object.entries(courses.ap).map(([name, data]) => 
+                `<option value="ap:${name}">${name}</option>`
+            ).join('')}
+        </select>
+        <select class="grade-select" id="virtual-grade-${classCount + 1}">
+            <option value="">Expected Grade</option>
+            <option value="A">A (4.0)</option>
+            <option value="A-">A- (3.7)</option>
+            <option value="B+">B+ (3.3)</option>
+            <option value="B">B (3.0)</option>
+            <option value="B-">B- (2.7)</option>
+            <option value="C+">C+ (2.3)</option>
+            <option value="C">C (2.0)</option>
+            <option value="C-">C- (1.7)</option>
+            <option value="D+">D+ (1.3)</option>
+            <option value="D">D (1.0)</option>
+            <option value="E">E (0.0)</option>
+        </select>
+    `;
+    
+    virtualClasses.appendChild(virtualClass);
+    virtualClass.querySelector('select').addEventListener('change', calculateGPA);
+    virtualClass.querySelector('select:last-child').addEventListener('change', calculateGPA);
+}
+```
+Explanation: This code implements dynamic Virtual Virginia class management that:
+- Creates new Virtual Virginia class slots on demand
+- Generates unique IDs for each class to prevent conflicts
+- Automatically populates available AP courses
+- Sets up event listeners for real-time GPA updates
+- Maintains consistent UI/UX across all class selections
+The code is suitable because it provides a flexible way to add unlimited Virtual Virginia classes while keeping the interface intuitive and maintaining data consistency.
