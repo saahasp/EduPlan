@@ -72,6 +72,36 @@ const weightedBonus = {
     'E': 0.0
 };
 
+const virtualVirginiaClasses = [
+    "AP Art History",
+    "AP Biology",
+    "AP Calculus AB",
+    "AP Calculus BC",
+    "AP Chinese Language & Culture",
+    "AP Comparative Government & Politics",
+    "AP Computer Science A",
+    "AP Computer Science Principles",
+    "AP English Language & Composition",
+    "AP English Literature & Composition",
+    "AP Environmental Science",
+    "AP European History",
+    "AP French Language & Culture",
+    "AP German Language & Culture",
+    "AP Human Geography",
+    "AP Macroeconomics",
+    "AP Microeconomics",
+    "AP Music Theory",
+    "AP Physics 1",
+    "AP Physics 2",
+    "AP Psychology",
+    "AP Spanish Language & Culture",
+    "AP Spanish Literature & Culture",
+    "AP Statistics",
+    "AP U.S. Government & Politics",
+    "AP U.S. History",
+    "AP World History: Modern"
+];
+
 document.addEventListener('DOMContentLoaded', () => {
     const courseSelects = document.querySelectorAll('.course-select');
     populateCourseSelects(courseSelects);
@@ -87,6 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     document.getElementById('add-virtual-class').addEventListener('click', addVirtualClass);
     document.getElementById('remove-virtual-class').addEventListener('click', removeVirtualClass);
+    document.getElementById('export-pdf').addEventListener('click', exportToPDF);
 });
 
 function populateCourseSelects(selects) {
@@ -129,6 +160,12 @@ function generateSchedule() {
     const targetGPA = parseFloat(document.getElementById('target-gpa').value) || 0;
     const selectedInterests = Array.from(document.querySelectorAll('.interest-tag.active'))
         .map(tag => tag.dataset.interest);
+
+    if (currentGPA < 2.0 || currentGPA > 5.5 || targetGPA < 2.0 || targetGPA > 5.5) {
+        alert('Please enter a valid GPA between 2.0 and 5.5');
+        return;
+    }
+
     if (!currentGPA || !targetGPA || selectedInterests.length === 0) {
         alert('Please enter your current GPA, target GPA, and select at least one academic interest.');
         return;
@@ -188,7 +225,7 @@ function addVirtualClass() {
     virtualClass.innerHTML = `
         <select class="course-select" id="virtual-class-${classCount + 1}">
             <option value="">Select an AP Course</option>
-            ${Object.entries(courses.ap).map(([name, data]) => 
+            ${virtualVirginiaClasses.map(name => 
                 `<option value="ap:${name}">${name}</option>`
             ).join('')}
         </select>
@@ -217,6 +254,164 @@ function removeVirtualClass() {
     if (virtualClasses.lastChild) {
         virtualClasses.removeChild(virtualClasses.lastChild);
         calculateGPA();
+    }
+}
+
+function exportToPDF() {
+    // Create new jsPDF instance
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    
+    // Set font to Times New Roman for the entire document
+    doc.setFont("times", "normal");
+    
+    // Set initial position
+    let yPos = 20;
+    
+    // Add title
+    doc.setFontSize(24);
+    doc.text('EduPlan Schedule Summary', 105, yPos, { align: 'center' });
+    
+    // Add current date
+    doc.setFontSize(12);
+    yPos += 15;
+    doc.text(`Generated on: ${new Date().toLocaleDateString()}`, 20, yPos);
+    
+    // Add GPA Information
+    yPos += 20;
+    doc.setFontSize(18);
+    doc.setFont("times", "bold");
+    doc.text('GPA Information', 20, yPos);
+    
+    doc.setFontSize(12);
+    doc.setFont("times", "normal");
+    yPos += 10;
+    doc.text(`Current GPA: ${document.getElementById('starting-gpa').textContent}`, 20, yPos);
+    yPos += 7;
+    doc.text(`Target GPA: ${document.getElementById('target-gpa').value}`, 20, yPos);
+    yPos += 7;
+    doc.text(`Projected Total GPA: ${document.getElementById('total-gpa').textContent}`, 20, yPos);
+    
+    // Add Academic Interests
+    yPos += 15;
+    doc.setFontSize(18);
+    doc.setFont("times", "bold");
+    doc.text('Academic Interests', 20, yPos);
+    
+    const interests = Array.from(document.querySelectorAll('.interest-tag.active'))
+        .map(tag => tag.dataset.interest.charAt(0).toUpperCase() + tag.dataset.interest.slice(1));
+    
+    doc.setFontSize(12);
+    doc.setFont("times", "normal");
+    yPos += 10;
+    interests.forEach(interest => {
+        doc.text(`• ${interest}`, 25, yPos);
+        yPos += 7;
+    });
+    
+    // Add Regular Course Schedule
+    yPos += 8;
+    doc.setFontSize(18);
+    doc.setFont("times", "bold");
+    doc.text('Regular Course Schedule', 20, yPos);
+    
+    const regularCourses = Array.from(document.querySelectorAll('.block'))
+        .map(block => {
+            const courseSelect = block.querySelector('.course-select');
+            const gradeSelect = block.querySelector('.grade-select');
+            if (!courseSelect || !gradeSelect) return null;
+            const courseName = courseSelect.options[courseSelect.selectedIndex].text;
+            const grade = gradeSelect.value;
+            return {
+                course: courseName,
+                grade: grade
+            };
+        })
+        .filter(course => course && course.course && course.course !== 'Select a course' && course.grade && course.grade !== '');
+    
+    yPos += 10;
+    doc.setFontSize(12);
+    doc.setFont("times", "normal");
+    if (regularCourses.length === 0) {
+        doc.text('No courses selected', 25, yPos);
+        yPos += 7;
+    } else {
+        regularCourses.forEach((course, index) => {
+            doc.text(`${index + 1}. ${course.course} - Expected Grade: ${course.grade}`, 25, yPos);
+            yPos += 7;
+        });
+    }
+    
+    // Add Virtual Virginia AP Classes
+    yPos += 8;
+    doc.setFontSize(18);
+    doc.setFont("times", "bold");
+    doc.text('Virtual Virginia AP Classes', 20, yPos);
+    
+    const virtualCourses = Array.from(document.querySelectorAll('.virtual-class'))
+        .map(vClass => {
+            const courseSelect = vClass.querySelector('.course-select');
+            const gradeSelect = vClass.querySelector('.grade-select');
+            const courseName = courseSelect.options[courseSelect.selectedIndex].text;
+            const grade = gradeSelect.value;
+            return {
+                course: courseName,
+                grade: grade
+            };
+        })
+        .filter(course => course.course && course.course !== 'Select AP Class' && course.grade);
+    
+    yPos += 10;
+    doc.setFontSize(12);
+    doc.setFont("times", "normal");
+    if (virtualCourses.length === 0) {
+        doc.text('No AP classes selected', 25, yPos);
+        yPos += 7;
+    } else {
+        virtualCourses.forEach((course, index) => {
+            doc.text(`${index + 1}. ${course.course} - Expected Grade: ${course.grade}`, 25, yPos);
+            yPos += 7;
+        });
+    }
+    
+    // Add GPA Calculation Details
+    yPos += 8;
+    doc.setFontSize(18);
+    doc.setFont("times", "bold");
+    doc.text('GPA Calculation Details', 20, yPos);
+    
+    doc.setFontSize(12);
+    doc.setFont("times", "normal");
+    yPos += 10;
+    doc.text(`Base GPA: ${document.getElementById('base-gpa').textContent}`, 25, yPos);
+    yPos += 7;
+    doc.text(`Average Base GPA: ${document.getElementById('average-base-gpa').textContent}`, 25, yPos);
+    yPos += 7;
+    doc.text(`Weighted Bonus: ${document.getElementById('weighted-bonus').textContent}`, 25, yPos);
+    
+    // Add footer
+    doc.setFontSize(10);
+    doc.setFont("times", "italic");
+    doc.text('Generated by EduPlan - Your Academic Planning Assistant', 105, 285, { align: 'center' });
+    
+    // Save the PDF
+    doc.save('EduPlan-Schedule.pdf');
+}
+
+function updateGPAStatus(achievable) {
+    const gpaStatus = document.getElementById('gpa-status');
+    gpaStatus.className = 'gpa-status'; // Reset classes
+    
+    if (gpaStatus.textContent === 'Awaiting GPA calculation...') {
+        return; // Keep default yellow style
+    }
+    
+    if (achievable) {
+        gpaStatus.classList.add('success');
+        gpaStatus.textContent = 'Target GPA Achievable';
+    } else {
+        gpaStatus.classList.add('error');
+        gpaStatus.textContent = 'Target GPA Not Yet Achievable';
     }
 }
 
@@ -270,13 +465,6 @@ function calculateGPA() {
     document.getElementById('weighted-bonus').textContent = totalBonus.toFixed(4);
     document.getElementById('total-gpa').textContent = totalGPA.toFixed(4);
 
-    //colors
-    const gpaStatus = document.getElementById('gpa-status');
-    if (totalGPA >= targetGPA) {
-        gpaStatus.className = 'gpa-status success';
-        gpaStatus.textContent = 'Target GPA Achievable! ';
-    } else {
-        gpaStatus.className = 'gpa-status error';
-        gpaStatus.textContent = 'Target GPA Not Yet Achievable';
-    }
+    // Update the status with color
+    updateGPAStatus(totalGPA >= targetGPA);
 }
