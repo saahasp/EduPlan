@@ -1,4 +1,3 @@
-/* General Styles */
 :root {
   --primary-color: #007AFF;
   --secondary-color: #5856D6;
@@ -40,7 +39,6 @@ body {
   padding: var(--spacing-md);
 }
 
-/* Navigation */
 .top-nav {
   display: flex;
   align-items: center;
@@ -60,13 +58,11 @@ body {
   fill: currentColor;
 }
 
-/* Main Content */
 .main-content {
   display: grid;
   gap: var(--spacing-xl);
 }
 
-/* Input Section */
 .input-section {
   background-color: var(--surface-color);
   padding: var(--spacing-lg);
@@ -112,7 +108,6 @@ body {
   color: white;
 }
 
-/* Schedule Section */
 .schedule-section {
   background-color: var(--surface-color);
   padding: var(--spacing-md);
@@ -145,7 +140,6 @@ body {
   gap: var(--spacing-sm);
 }
 
-/* Virtual Virginia Section */
 .virtual-virginia-section {
   background-color: var(--surface-color);
   padding: var(--spacing-md);
@@ -193,7 +187,6 @@ body {
   align-items: center;
 }
 
-/* GPA Section */
 .gpa-section {
   background-color: var(--surface-color);
   padding: var(--spacing-md);
@@ -246,7 +239,6 @@ body {
   color: white;
 }
 
-/* Form Elements */
 input[type="number"],
 select {
   padding: var(--spacing-sm) var(--spacing-md);
@@ -272,7 +264,6 @@ select {
   background-color: var(--secondary-color);
 }
 
-/* Interest Tags */
 .interest-tags {
   display: flex;
   flex-wrap: wrap;
@@ -295,7 +286,6 @@ select {
   border-color: var(--primary-color);
 }
 
-/* Generate Schedule Button */
 #generate-schedule {
   width: 100%;
   background-color: var(--primary-color);
@@ -314,7 +304,7 @@ select {
   background-color: #0066CC;
 }
 
-/* Responsive Design */
+/* smooth fade yk how it be */
 @media (max-width: 1200px) {
   .blocks-grid {
     grid-template-columns: repeat(2, 1fr);

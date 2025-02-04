@@ -1,5 +1,3 @@
-Complex Code Documentation for IB Computer Science HL IA - Part C
-
 1. GPA Calculation System
 ```javascript
 function calculateGPA() {
