@@ -1,0 +1,21 @@
+@startuml
+
+class Course {
+    - name: String
+    - category: String
+    - type: String
+    + getCourseDetails(): String
+}
+
+class Schedule {
+    + populateCourseSelects(selects: Array)
+    + generateSchedule()
+    + addVirtualClass()
+    + removeVirtualClass()
+    + exportToPDF()
+    + calculateGPA()
+}
+
+Course <|-- Schedule
+
+@enduml
